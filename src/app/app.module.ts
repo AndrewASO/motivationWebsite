@@ -10,6 +10,10 @@ import { HomeComponent } from './home/home.component';
 import { LanguagesComponent } from './languages/languages.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { ProgressWidgetComponent } from './progress-widget/progress-widget.component';
+import { WeatherWidgetComponent } from './weather-widget/weather-widget.component';
+import { TimeWidgetComponent } from './time-widget/time-widget.component';
 
 
 const routes: Routes = [
@@ -17,6 +21,7 @@ const routes: Routes = [
   { path: 'languages', component: LanguagesComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'tasks', component: TasksComponent },
 ]
 
 @NgModule({
@@ -27,7 +32,11 @@ const routes: Routes = [
     HomeComponent,
     LanguagesComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    TasksComponent,
+    ProgressWidgetComponent,
+    WeatherWidgetComponent,
+    TimeWidgetComponent
   ],
   imports: [
     BrowserModule,

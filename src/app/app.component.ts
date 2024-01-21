@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'motivationWebsite';
+  title = 'testWebsite';
+
+  toggleNightMode() {
+    document.body.classList.toggle('night-mode');
+  }
 }
