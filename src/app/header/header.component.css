@@ -79,9 +79,6 @@ input:checked + .toggle-label:before {
   transform: translateX(26px); /* Adjust this to the width of your switch */
 }
 
-
-
-
 .toggle-inner:before,
 .toggle-inner:after {
   position: absolute;
@@ -109,4 +106,68 @@ input:checked + .toggle-label .toggle-inner:before {
 
 input:checked + .toggle-label .toggle-inner:after {
   opacity: 0.7; /* Adjust as needed for visibility */
+}
+
+/* Style for profile icon and dropdown */
+.profile-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-icon {
+  /* Styles for your profile icon */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style for individual items in the dropdown to stack vertically */
+.dropdown-menu li {
+  display: block; /* This ensures that the links are stacked vertically */
+}
+
+.dropdown-menu li a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f1f1f1;
+}
+
+/* Override flex display for dropdown menu items */
+.profile-dropdown .dropdown-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1000; /* High z-index to ensure it's on top */
+  flex-direction: column; /* This is not necessary for a block display but is more explicit */
+}
+
+/* Ensures that the dropdown links are stacked vertically */
+.profile-dropdown .dropdown-menu li {
+  display: block; /* This will stack the dropdown items vertically */
+}
+
+.profile-dropdown .dropdown-menu li a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block; /* Ensures the links also behave like block-level elements */
+}
+
+/* Shows the dropdown menu when the 'show' class is added */
+.profile-dropdown.show .dropdown-menu {
+  display: block; /* Show the dropdown */
 }

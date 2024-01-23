@@ -1,30 +1,34 @@
-
 <header>
-    <nav>
-      <div class="left-nav">
-        <ul>
-          <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-          <li><a routerLink="/languages" routerLinkActive="active">Languages</a></li>
-          <li><a routerLink="/tasks" routerLinkActive="active">Tasks</a></li>
-        </ul>
-      </div>
-      <div class="right-nav">
-        <ul>
-          <!-- Theme toggle wrapped in an li element -->
-          <li>
-            <div class="theme-toggle">
-              <input id="night-mode-toggle" type="checkbox" (change)="toggleNightMode()">
-              <label for="night-mode-toggle" class="toggle-label">
-                <span class="toggle-inner"></span>
-              </label>
-            </div>
-          </li>
-          <li><a routerLink="/signup" routerLinkActive="active">Signup</a></li>
-          <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  
-
-  
+  <nav>
+    <div class="left-nav">
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li><a routerLink="/languages" routerLinkActive="active">Languages</a></li>
+        <li><a routerLink="/tasks" routerLinkActive="active">Tasks</a></li>
+      </ul>
+    </div>
+    <div class="right-nav">
+      <ul>
+        <!-- Theme toggle -->
+        <li>
+          <div class="theme-toggle">
+            <input id="night-mode-toggle" type="checkbox" (change)="toggleNightMode()">
+            <label for="night-mode-toggle" class="toggle-label">
+              <span class="toggle-inner"></span>
+            </label>
+          </div>
+        </li>
+        
+        <!-- Profile icon and dropdown -->
+        <li class="profile-dropdown" [class.show]="showDropdown" (mouseleave)="showDropdown = false">
+          <a (click)="toggleDropdown()"><i class="profile-icon">👤</i></a>
+          <ul class="dropdown-menu">
+            <li *ngIf="!(isAuthenticated$ | async)"><a routerLink="/signup">Signup</a></li>
+            <li *ngIf="!(isAuthenticated$ | async)"><a routerLink="/login">Login</a></li>
+            <li *ngIf="isAuthenticated$ | async"><a (click)="onLogout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

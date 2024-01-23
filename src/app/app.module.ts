@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +17,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { ProgressWidgetComponent } from './progress-widget/progress-widget.component';
 import { WeatherWidgetComponent } from './weather-widget/weather-widget.component';
 import { TimeWidgetComponent } from './time-widget/time-widget.component';
+import { authReducer } from './auth/auth.reducer';
+
 
 
 const routes: Routes = [
@@ -41,7 +46,10 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes)
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+    StoreModule.forRoot( { auth: authReducer} )
   ],
   exports: [
     RouterModule
