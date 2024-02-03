@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -16,8 +16,9 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   signIn(displayName: string, username: string, password: string): Observable<any> {
-    const url = `${this.baseUrl}/SignIn?DisplayName=${encodeURIComponent(displayName)}&Username=${encodeURIComponent(username)}&Password=${encodeURIComponent(password)}`;
-    return this.http.get(url).pipe(
+    const url = `${this.baseUrl}/SignIn`;
+    const body = { displayName, username, password };
+    return this.http.post(url, body).pipe(
       tap(response => {
         // You may want to check response to ensure login is successful before setting to true
         this.isAuthenticatedSubject.next(true);
@@ -26,8 +27,9 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<any> {
-    const url = `${this.baseUrl}/Login?Username=${encodeURIComponent(username)}&Password=${encodeURIComponent(password)}`;
-    return this.http.get(url).pipe(
+    const url = `${this.baseUrl}/Login`;
+    const body = { username, password };
+    return this.http.post(url, body).pipe(
       tap(response => {
         // Again, check response to ensure login is successful
         this.isAuthenticatedSubject.next(true);

@@ -18,6 +18,7 @@ import { ProgressWidgetComponent } from './progress-widget/progress-widget.compo
 import { WeatherWidgetComponent } from './weather-widget/weather-widget.component';
 import { TimeWidgetComponent } from './time-widget/time-widget.component';
 import { authReducer } from './auth/auth.reducer';
+import { NovelsComponent } from './novels/novels.component';
 
 
 
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'tasks', component: TasksComponent },
+  { path: 'novels', component: NovelsComponent},
 ]
 
 @NgModule({
@@ -41,7 +43,8 @@ const routes: Routes = [
     TasksComponent,
     ProgressWidgetComponent,
     WeatherWidgetComponent,
-    TimeWidgetComponent
+    TimeWidgetComponent,
+    NovelsComponent
   ],
   imports: [
     BrowserModule,

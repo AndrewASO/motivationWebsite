@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { AuthService } from '../services/auth.services';
 
 @Component({
@@ -11,18 +10,33 @@ export class SignupComponent {
   displayName: string = '';
   username: string = '';
   password: string = '';
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private authService: AuthService ) { }
 
   onSignup() {
     this.authService.signIn(this.displayName, this.username, this.password).subscribe(
       response => {
-        console.log('Signup successful', response);
-        // Handle response
+        if (response === true) {
+          this.successMessage = 'Signup successful';
+          this.errorMessage = '';
+        } else {
+          this.errorMessage = 'Signup failed. Please try a different username.';
+          this.successMessage = '';
+        }
+        // Clear form fields
+        this.displayName = '';
+        this.username = '';
+        this.password = '';
       },
       error => {
-        console.error('Signup failed', error);
-        // Handle error
+        this.errorMessage = 'An error occurred during signup. Please try again.';
+        this.successMessage = '';
+        // Clear form fields
+        this.displayName = '';
+        this.username = '';
+        this.password = '';
       }
     );
   }
