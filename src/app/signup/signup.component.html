@@ -1,13 +1,20 @@
 
 
 <div class="signup-container">
-  <h2>Signup</h2>
+  <h2>SIGN UP</h2>
   <form (ngSubmit)="onSignup()">
-    <input type="text" [(ngModel)]="displayName" name="displayName" placeholder="Display Name" required>
-    <input type="text" [(ngModel)]="username" name="username" placeholder="Username" required>
-    <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required>
-    <button type="submit">Sign Up</button>
+    <div class="input-group">
+      <input type="text" [(ngModel)]="displayName" name="displayName" placeholder="Display Name" required>
+      <input type="text" [(ngModel)]="username" name="username" placeholder="Username" required>
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required>
+      <button type="submit" class="signup-btn">SIGN UP</button>
+    </div>
+    <div class="separator">OR</div>
+    <div class="social-login">
+      <button type="button" class="social-btn google">G</button>
+      <button type="button" class="social-btn facebook">f</button>
+      <button type="button" class="social-btn linkedin">in</button>
+    </div>
+    <p class="login-link">Already a user? <a href="/login">LOGIN</a></p>
   </form>
-  <div *ngIf="successMessage" class="alert-success">{{ successMessage }}</div>
-  <div *ngIf="errorMessage" class="alert-error">{{ errorMessage }}</div>
 </div>
