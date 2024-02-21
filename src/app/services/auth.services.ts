@@ -9,19 +9,27 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private baseUrl = 'http://localhost:3000'; // Adjust as necessary
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  private sessionTokenKey = 'sessionToken'; // Key for storing session token
 
   // Expose the observable part of the isAuthenticated subject
   isAuthenticated$: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    // Check for an existing session token at startup
+    const sessionToken = localStorage.getItem(this.sessionTokenKey);
+    this.isAuthenticatedSubject.next(!!sessionToken);
+  }
 
   signIn(displayName: string, username: string, password: string): Observable<any> {
     const url = `${this.baseUrl}/SignIn`;
     const body = { displayName, username, password };
-    return this.http.post(url, body).pipe(
+    return this.http.post<{sessionId: string}>(url, body).pipe(
       tap(response => {
-        // You may want to check response to ensure login is successful before setting to true
-        this.isAuthenticatedSubject.next(true);
+        if (response.sessionId) {
+          // If the signup process also logs the user in, handle the session ID
+          localStorage.setItem(this.sessionTokenKey, response.sessionId);
+          this.isAuthenticatedSubject.next(true);
+        }
       })
     );
   }
@@ -29,16 +37,20 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     const url = `${this.baseUrl}/Login`;
     const body = { username, password };
-    return this.http.post(url, body).pipe(
+    return this.http.post<{sessionId: string}>(url, body).pipe(
       tap(response => {
-        // Again, check response to ensure login is successful
-        this.isAuthenticatedSubject.next(true);
+        if (response.sessionId) {
+          localStorage.setItem(this.sessionTokenKey, response.sessionId);
+          this.isAuthenticatedSubject.next(true);
+        } else {
+          this.isAuthenticatedSubject.next(false);
+        }
       })
     );
   }
 
   logout(): void {
-    // Implement logout logic, then set isAuthenticated to false
+    localStorage.removeItem(this.sessionTokenKey);
     this.isAuthenticatedSubject.next(false);
   }
 }

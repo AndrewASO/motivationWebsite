@@ -1,1 +1,15 @@
-<p>tasks works!</p>
+<div>
+    <input type="text" [(ngModel)]="newTaskDescription" placeholder="Add a new task">
+    <button (click)="addTask()">Add Task</button>
+  </div>
+  
+  <div *ngFor="let task of tasks">
+    <app-task-item
+      [task]="task"
+      (taskCompleted)="completeTask(task.description)"
+      (taskDeleted)="deleteTask(task.description)"
+    ></app-task-item>
+  </div>
+  
+  <button (click)="resetTasks()">Reset Tasks</button>
+  

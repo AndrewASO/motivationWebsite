@@ -19,6 +19,8 @@ import { WeatherWidgetComponent } from './weather-widget/weather-widget.componen
 import { TimeWidgetComponent } from './time-widget/time-widget.component';
 import { authReducer } from './auth/auth.reducer';
 import { NovelsComponent } from './novels/novels.component';
+import { Task } from './tasks/task.model';
+import { TaskItemComponent } from './task-item/task-item.component';
 
 
 
@@ -44,7 +46,9 @@ const routes: Routes = [
     ProgressWidgetComponent,
     WeatherWidgetComponent,
     TimeWidgetComponent,
-    NovelsComponent
+    NovelsComponent,
+    TasksComponent,
+    TaskItemComponent
   ],
   imports: [
     BrowserModule,

@@ -17,31 +17,35 @@ export class LoginComponent {
   constructor(private authService: AuthService, private store: Store) { }
 
   onLogin() {
-    this.authService.login(this.username, this.password).subscribe(
-      response => {
-        if (response === true) {
+    this.authService.login(this.username, this.password).subscribe({
+      next: (response) => {
+        console.log('Login response:', response); // Debugging line
+        if (response.sessionId) {
           this.successMessage = 'Login successful';
           this.errorMessage = '';
-          this.store.dispatch(login({ username: this.username, displayName: 'Your Display Name' })); // Adjust as needed
+          this.store.dispatch(login({ username: this.username, displayName: 'Your Display Name' }));
         } else {
           this.errorMessage = 'Invalid username or password.';
           this.successMessage = '';
         }
-        // Clear form fields
         this.username = '';
         this.password = '';
       },
-      error => {
+      error: (error) => {
+        console.log('Login error:', error); // Debugging line
         this.errorMessage = 'An error occurred during login. Please try again.';
         this.successMessage = '';
-        // Clear form fields
         this.username = '';
         this.password = '';
       }
-    );
+    });
   }
+  
+  
+  
 
   onLogout() {
+    this.authService.logout();
     this.store.dispatch(logout());
     this.successMessage = '';
   }
