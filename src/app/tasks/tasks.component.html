@@ -1,3 +1,4 @@
+<p>Current Username: {{ username }}</p>
 <div>
     <input type="text" [(ngModel)]="newTaskDescription" placeholder="Add a new task">
     <button (click)="addTask()">Add Task</button>
@@ -12,4 +13,5 @@
   </div>
   
   <button (click)="resetTasks()">Reset Tasks</button>
+
   

@@ -41,6 +41,7 @@ export class AuthService {
       tap(response => {
         if (response.sessionId) {
           localStorage.setItem(this.sessionTokenKey, response.sessionId);
+          localStorage.setItem('username', username);
           this.isAuthenticatedSubject.next(true);
         } else {
           this.isAuthenticatedSubject.next(false);

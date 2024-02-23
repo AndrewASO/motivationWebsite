@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { TasksService } from '../services/tasks.service';
+import { AuthState } from '../auth/auth.state';
 
 @Component({
   selector: 'app-tasks',
@@ -7,51 +10,73 @@ import { TasksService } from '../services/tasks.service';
   styleUrls: ['./tasks.component.css'],
 })
 export class TasksComponent implements OnInit {
-  tasks: any[] = []; // Replace 'any' with your task model
+  tasks: any[] = [];
   newTaskDescription: string = '';
-  username: string = 'exampleUser'; // This should be dynamically set based on the logged-in user
+  username: string | null = null; // Initialize username as null
 
-  constructor(private tasksService: TasksService) {}
+  constructor(private tasksService: TasksService, private store: Store<{ auth: AuthState }>) {
+    this.store.select(state => state.auth.username).subscribe(username => {
+      this.username = username; // Update username when it changes
+    });
+  }
 
   ngOnInit(): void {
-    this.loadTasks();
+    // Retrieve username from localStorage
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      this.username = storedUsername;
+      this.loadTasks();
+    } else {
+      // Handle case where username is not found, e.g., user not logged in
+    }
   }
 
   loadTasks(): void {
-    this.tasksService.getTasks(this.username).subscribe({
-      next: (data) => (this.tasks = data),
-      error: (error) => console.error(error),
-    });
+    if (this.username) { // Ensure username is not null
+      this.tasksService.getTasks(this.username).subscribe({
+        next: (data) => (this.tasks = data),
+        error: (error) => console.error(error),
+      });
+    }
   }
 
   addTask(): void {
-    this.tasksService.addTask(this.username, this.newTaskDescription).subscribe({
-      next: () => {
-        this.loadTasks();
-        this.newTaskDescription = ''; // Reset the input
-      },
-      error: (error) => console.error(error),
-    });
+    if (this.username) {
+      this.tasksService.addTask(this.username, this.newTaskDescription).subscribe({
+        next: () => {
+          this.loadTasks();
+          this.newTaskDescription = ''; // Reset the input
+        },
+        error: (error) => console.error(error),
+      });
+    }
   }
 
   deleteTask(taskDescription: string): void {
-    this.tasksService.deleteTask(this.username, taskDescription).subscribe({
-      next: () => this.loadTasks(),
-      error: (error) => console.error(error),
-    });
+    if (this.username) {
+      this.tasksService.deleteTask(this.username, taskDescription).subscribe({
+        next: () => this.loadTasks(),
+        error: (error) => console.error(error),
+      });
+    }
   }
-
+  
   completeTask(taskDescription: string): void {
-    this.tasksService.completeTask(this.username, taskDescription).subscribe({
-      next: () => this.loadTasks(),
-      error: (error) => console.error(error),
-    });
+    if (this.username) {
+      this.tasksService.completeTask(this.username, taskDescription).subscribe({
+        next: () => this.loadTasks(),
+        error: (error) => console.error(error),
+      });
+    }
   }
-
+  
   resetTasks(): void {
-    this.tasksService.resetTasks(this.username).subscribe({
-      next: () => this.loadTasks(),
-      error: (error) => console.error(error),
-    });
+    if (this.username) {
+      this.tasksService.resetTasks(this.username).subscribe({
+        next: () => this.loadTasks(),
+        error: (error) => console.error(error),
+      });
+    }
   }
+  
 }
