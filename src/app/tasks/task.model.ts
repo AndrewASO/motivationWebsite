@@ -1,10 +1,10 @@
 
 
 export interface Task {
-    id: number;
+    id: string;
     description: string;
     dueDate: Date;
-    urgency: 'urgent' | 'medium' | 'low';
-    isCompleted: boolean;
-  }
+    urgency: 'yearly' | 'monthly' | 'weekly' | 'daily';
+    completed: boolean;
+}
   

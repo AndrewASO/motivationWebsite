@@ -10,17 +10,17 @@ export class TasksService {
 
   constructor(private http: HttpClient) {}
 
-  addTask(username: string, description: string): Observable<any> {
-    return this.http.post(`${this.baseURL}/tasks/add`, { username, description });
-  }
+  addTask(username: string, description: string, urgency: string): Observable<any> {
+    return this.http.post(`${this.baseURL}/tasks/add`, { username, description, urgency });
+  }  
 
-  deleteTask(username: string, taskDescription: string): Observable<any> {
-    // Assuming your backend supports deleting by description
-    return this.http.delete(`${this.baseURL}/tasks/delete`, { body: { username, taskDescription } });
+  deleteTask(username: string, taskId: string): Observable<any> {
+    // Use HTTP DELETE method, passing taskId in the request body
+    return this.http.delete(`${this.baseURL}/tasks/delete`, { body: { username, taskId } });
   }
-
-  completeTask(username: string, taskDescription: string): Observable<any> {
-    return this.http.post(`${this.baseURL}/tasks/complete`, { username, taskDescription });
+  
+  toggleTaskCompletion(username: string, taskId: string): Observable<any> {
+    return this.http.post(`${this.baseURL}/tasks/toggle-completion`, { username, taskId });
   }
 
   getTasks(username: string): Observable<any> {
@@ -29,5 +29,9 @@ export class TasksService {
 
   resetTasks(username: string): Observable<any> {
     return this.http.post(`${this.baseURL}/tasks/reset`, { username });
+  }
+
+  updateTaskUrgency(username: string, taskId: string, newUrgency: string): Observable<any> {
+    return this.http.patch(`${this.baseURL}/tasks/update-urgency`, { username, taskId, newUrgency });
   }
 }

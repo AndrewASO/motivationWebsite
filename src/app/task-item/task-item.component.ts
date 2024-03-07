@@ -7,15 +7,35 @@ import { Task } from '../tasks/task.model';
   styleUrls: ['./task-item.component.css']
 })
 export class TaskItemComponent {
-  @Input() task: any; // Replace 'any' with your Task model
-  @Output() taskCompleted = new EventEmitter<string>();
+  @Input() task: any; // Allow task to be optional and initialize as null
+  @Input() editMode: boolean = false;
+  @Output() toggleTaskCompletion = new EventEmitter<string>();
   @Output() taskDeleted = new EventEmitter<string>();
+  @Output() taskEdited = new EventEmitter<Task>();
 
   completeTask() {
-    this.taskCompleted.emit(this.task.description);
+    if (this.task) { // Check if task is not null
+      this.toggleTaskCompletion.emit(this.task.id);
+    }
+  }
+
+  onCheckboxChange(): void {
+    if (this.task) {
+      // Toggle task completion status
+      this.task.completed = !this.task.completed;
+      // Emit an event for the parent component to handle the update
+      this.toggleTaskCompletion.emit(this.task.id);
+    }
   }
   
+  
+  
+  
   deleteTask() {
-    this.taskDeleted.emit(this.task.description);
+    // Delete logic, potentially with confirmation
+    if (this.task && this.editMode && confirm('Confirm delete?')) {
+      this.taskDeleted.emit(this.task.id);
+    }
   }
+
 }

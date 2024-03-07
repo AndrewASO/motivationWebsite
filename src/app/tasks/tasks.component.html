@@ -1,17 +1,30 @@
 <p>Current Username: {{ username }}</p>
 <div>
     <input type="text" [(ngModel)]="newTaskDescription" placeholder="Add a new task">
+    <select [(ngModel)]="newTaskUrgency">
+        <option value="yearly">Yearly</option>
+        <option value="monthly">Monthly</option>
+        <option value="weekly">Weekly</option>
+        <option value="daily" selected>Daily</option>
+    </select>
     <button (click)="addTask()">Add Task</button>
-  </div>
-  
-  <div *ngFor="let task of tasks">
-    <app-task-item
-      [task]="task"
-      (taskCompleted)="completeTask(task.description)"
-      (taskDeleted)="deleteTask(task.description)"
-    ></app-task-item>
-  </div>
-  
-  <button (click)="resetTasks()">Reset Tasks</button>
+</div>
 
-  
+<button (click)="editMode = !editMode">{{ editMode ? 'Finish Editing' : 'Edit Tasks' }}</button>
+
+<!-- Dynamic Urgency Sections -->
+<ng-container *ngFor="let urgency of ['yearly', 'monthly', 'weekly', 'daily']">
+  <section *ngIf="groupedTasks[urgency].length > 0">
+    <h2>{{ urgency | titlecase }} Tasks</h2>
+    <div *ngFor="let task of groupedTasks[urgency]">
+      <app-task-item
+      [task]="task"
+      [editMode]="editMode"
+      (toggleTaskCompletion)="toggleTaskCompletion(task.id)"
+      (taskDeleted)="deleteTask(task.id)">
+      </app-task-item>
+    </div>
+  </section>
+</ng-container>
+
+<button (click)="resetTasks()">Reset Tasks</button>

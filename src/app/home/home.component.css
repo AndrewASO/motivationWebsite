@@ -2,7 +2,7 @@
 
 .home-container {
     display: flex;
-    flex-direction: column; /* Or 'row' if you want a horizontal layout */
+    flex-direction: row; /* Or 'row' if you want a horizontal layout */
     align-items: center; /* Center widgets horizontally */
     justify-content: space-around; /* Distribute space around widgets */
     padding: 20px;

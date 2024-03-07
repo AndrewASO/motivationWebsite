@@ -1,17 +1,45 @@
-
 .weather-widget {
-    color: #fff; /* White text color */
-    background-color: #333; /* Dark background */
-    padding: 10px;
-    border-radius: 5px; /* Rounded corners */
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+}
+
+.weather-info {
+  flex-grow: 1; /* Allow the info section to grow */
+}
+
+.weather-location {
+  font-size: 1.5em;
+  margin-bottom: 0.25em; /* Space between location and description */
+}
+
+.weather-status {
+  font-size: 2.5em;
+  margin: 0 20px; /* Add some horizontal spacing */
+}
+
+.weather-temp-unit {
+  display: flex;
+  align-items: baseline; /* Align the baseline of the text */
+  cursor: pointer;
+  flex-direction: column;
 }
 
 .weather-temp {
-    font-size: 2em; /* Large font size for temperature */
-    margin-bottom: 0.5em; /* Space between temp and description */
+  font-size: 2em;
+  margin-right: 0.5em; /* Space between temperature and unit */
+}
+
+.weather-unit {
+  font-size: 1.5em;
+  vertical-align: super; /* Align the unit slightly higher */
 }
 
 .weather-desc {
-    font-size: 1.2em; /* Font size for weather description */
+  font-size: 1.2em;
 }

@@ -3,4 +3,13 @@
     display: flex;
     flex-direction: column;
   }
+
+.completed {
+  color: green; /* Or any color for completed tasks */
+  }
+  
+.incomplete {
+  color: red; /* Or any color for incomplete tasks */
+  }
+  
   

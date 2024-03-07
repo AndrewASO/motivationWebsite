@@ -1,8 +1,11 @@
-
-
 <div *ngIf="weather" class="weather-widget">
-    <h2>Weather in {{ weather.name }}</h2>
-    <div class="weather-temp">{{ weather.main.temp }} °{{ unit === 'metric' ? 'C' : 'F' }}</div>
+  <div class="weather-info">
+    <div class="weather-location">{{ weather.name }}</div>
+    <p class="weather-label">Weather</p>
+  </div>
+  <div class="weather-status">{{ getWeatherIcon(weather.weather[0].description) }}</div>
+  <div class="weather-temp-unit" (click)="toggleUnit()">
+    <span class="weather-temp">{{ weather.main.temp }} °{{ unit === 'metric' ? 'C' : 'F' }}</span>
     <div class="weather-desc">{{ weather.weather[0].description }}</div>
-    <button (click)="toggleUnit()">Switch to {{ unit === 'metric' ? 'Fahrenheit' : 'Celsius' }}</button>
+  </div>
 </div>

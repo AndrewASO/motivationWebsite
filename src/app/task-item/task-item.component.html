@@ -1,7 +1,13 @@
-<div class="task-item">
-    <h3>{{ task.title }}</h3>
-    <p>{{ task.description }}</p>
-    <button (click)="completeTask()">Complete</button>
+<div class="task-item" *ngIf="task">
+  <input type="checkbox" [checked]="task.completed" (change)="onCheckboxChange()">
+  <!-- New span for completion status -->
+  <!-- <span [style.color]="task.completed? 'blue' : 'inherit'">{{task.completed ? 'Completed' : 'Incomplete'}}</span> -->
+  <span [ngClass]="{'completed': task.completed, 'incomplete': !task.completed}">
+    {{ task.description }}
+  </span>
+  <!-- <span class="urgency">{{ task.urgency | titlecase }}</span> -->
+  <!-- Conditionally display edit options if in edit mode -->
+  <div *ngIf="editMode">
     <button (click)="deleteTask()">Delete</button>
   </div>
-  
+</div>
