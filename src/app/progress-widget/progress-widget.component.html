@@ -1,13 +1,12 @@
 
 
-
 <div class="progress-widget">
   <div class="progress-item" *ngFor="let item of progressItems">
     <div class="progress-bar-container">
       <div class="progress-bar" [style.width]="item.value + '%'"></div>
     </div>
     <div class="progress-label">{{ item.label }}</div>
-    <div class="progress-value">{{ item.value }}%</div>
+    <!-- Round to nearest whole number for display -->
+    <div class="progress-value">{{ item.value | number:'1.0-0' }}%</div>
   </div>
 </div>
-

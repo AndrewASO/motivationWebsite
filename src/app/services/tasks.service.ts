@@ -34,4 +34,8 @@ export class TasksService {
   updateTaskUrgency(username: string, taskId: string, newUrgency: string): Observable<any> {
     return this.http.patch(`${this.baseURL}/tasks/update-urgency`, { username, taskId, newUrgency });
   }
+
+  getCompletionPercentage(username: string, urgency: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/tasks/completion-percentage`, { params: { username, urgency } });
+  }
 }
