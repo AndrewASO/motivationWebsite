@@ -1,1 +1,22 @@
-<p>novels works!</p>
+<div class="novels-container">
+    <input type="text" [(ngModel)]="link" placeholder="Enter novel link here" />
+    <button (click)="fetchChapters()">Fetch Chapters</button>
+  
+    <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+  
+    <!-- Use *ngIf directive to conditionally render the chapters list -->
+    <div *ngIf="chapters?.length">
+      <h2>Chapters</h2>
+      <ul>
+        <!-- The *ngFor directive iterates over the chapters array safely -->
+        <li *ngFor="let chapter of chapters">
+          <a [href]="chapter.link" target="_blank">{{ chapter.title }}</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Optionally, you could include a message when there are no chapters to display -->
+    <div *ngIf="chapters && chapters.length === 0">
+      <p>No chapters available.</p>
+    </div>
+  </div>
+  

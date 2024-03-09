@@ -1,0 +1,39 @@
+
+/* Style for unclicked links */
+a:link {
+    color: white;
+  }
+  
+  /* Style for clicked links */
+  a:visited {
+    color: green;
+  }
+  
+  /* Additional styles to improve the look and feel */
+  .novels-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .novels-container input {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 300px;
+  }
+  
+  .novels-container button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .novels-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .novels-container li {
+    margin: 10px 0;
+  }
+  
