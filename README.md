@@ -1,27 +1,59 @@
-# MotivationWebsite
+# Motivation Website Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+## Author
+- Andrew Skevington-Olivera
 
-## Development server
+## Introduction
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The Motivation Website Frontend is the interactive user interface for the Motivation Website Backend, designed to provide a comprehensive and engaging user experience. Built using Angular, this frontend application showcases a variety of functionalities including user authentication, task management, dynamic content display, and more. This README outlines the features, technologies used, project structure, and setup instructions.
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **User Authentication**: Facilitates secure login and signup processes, managing user sessions effectively.
+- **Dynamic GIF Display**: Incorporates a gif-display component for visual engagement.
+- **Navigation and Routing**: Utilizes a header component for navigation between different pages.
+- **Home Page Widgets**: Features progress, time, and weather widgets to provide useful information at a glance.
+- **Novel Chapters Retrieval**: Allows users to enter a novel link to fetch and display chapters.
+- **Task Management**: Supports the creation, display, and management of tasks, integrating closely with the backend to reflect completion percentages and urgency.
+- **Dark Mode**: Offers a toggleable dark mode for user preference.
+- **Weather Information**: Displays current weather details for Sarasota, leveraging the OpenWeatherMap API.
 
-## Build
+## Technologies and Tools
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Angular**: A platform and framework for building single-page client applications using HTML and TypeScript.
+- **Angular Material**: Material Design components for Angular, used to create a cohesive and modern UI.
+- **RxJS**: A library for reactive programming using observables, making it easier to compose asynchronous or callback-based code.
+- **OpenWeatherMap API**: For fetching real-time weather information.
+- **Various Angular Modules**: Such as HttpClientModule for making HTTP requests and RouterModule for app routing.
 
-## Running unit tests
+## Project Structure Overview
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **src/app/auth**: Authentication components for login and signup functionalities.
+- **src/app/gif-display**: Component for displaying GIFs.
+- **src/app/header**: Navigation component handling redirects between pages.
+- **src/app/home**: Home page component displaying widgets like progress-widget, time-widget, and weather-widget.
+- **src/app/novels**: Component for novel chapters retrieval functionality.
+- **src/app/tasks**: Manages task-item components and handles task-related API interactions.
+- **src/app/widgets**: Contains individual widget components like progress-widget, time-widget, and weather-widget.
+- **src/app/services**: Services for handling API requests (auth, gpt, novels, tasks, weather-service).
+- **src/environments**: Contains Angular environment configurations.
 
-## Running end-to-end tests
+## Setup Instructions
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Prerequisites
 
-## Further help
+- Node.js and npm installed
+- Angular CLI installed
+- Access to the backend server (ensure the Motivation Website Backend is running)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Installation
+
+1. Clone the repository: `git clone https://github.com/AndrewASO/motivationWebsite`.
+2. Navigate to the project directory: `cd motivationWebsite`.
+3. Install dependencies: `npm install`.
+
+### Running the Project
+
+To start the development server:
+```bash
+ng serve
