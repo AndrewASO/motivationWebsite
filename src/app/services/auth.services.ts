@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000'; // Adjust as necessary
+  private baseUrl = `https://test--be-5b3b34eadcba.herokuapp.com` || 'http://localhost:3000'; // Adjust as necessary
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   private sessionTokenKey = 'sessionToken'; // Key for storing session token
 

@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class NovelService {
-  private baseURL = 'http://localhost:3000'; // Adjust based on your server URL
-
+  private baseURL = `https://test--be-5b3b34eadcba.herokuapp.com`; // Adjust based on your server URL (Local Host : http://localhost:3000)
   constructor(private http: HttpClient) {}
 
   getChapters(link: string): Observable<any> {
