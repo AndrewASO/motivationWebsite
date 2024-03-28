@@ -5,7 +5,7 @@
 
 ## Introduction
 
-The Motivation Website Frontend is the interactive user interface for the Motivation Website Backend, designed to provide a comprehensive and engaging user experience. Built using Angular, this frontend application showcases a variety of functionalities including user authentication, task management, dynamic content display, and more. This README outlines the features, technologies used, project structure, and setup instructions.
+The Motivation Website Frontend is the interactive user interface for the Motivation Website Backend, designed to provide a comprehensive and engaging user experience. Built using Angular, this frontend application showcases a variety of functionalities including user authentication, task management, dynamic content display, and more. This README outlines the features, technologies used, project structure, and setup instructions. The link to the website is https://jovial-puppy-d148b0.netlify.app
 
 ## Features
 
